@@ -69,7 +69,6 @@ export const SessionManager: React.FC = () => {
           onSpeedChange={setSpeed}
           duration={duration}
           onDurationChange={setDuration}
-          remaining={remaining}
           isPlaying={isPlaying}
         />
       )}
