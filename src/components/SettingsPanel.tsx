@@ -7,9 +7,8 @@ export const SettingsPanel: React.FC<{
   onSpeedChange: (speed: number) => void;
   duration: number;
   onDurationChange: (duration: number) => void;
-  remaining: number;
   isPlaying: boolean;
-}> = ({ onPlayPause, onStop, speed, onSpeedChange, duration, onDurationChange, remaining, isPlaying }) => (
+}> = ({ onPlayPause, onStop, speed, onSpeedChange, duration, onDurationChange, isPlaying }) => (
   <div
     style={{
       position: 'absolute',
