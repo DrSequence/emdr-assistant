@@ -6,7 +6,7 @@ export const SessionManager: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [speed, setSpeed] = useState(5); // скорость от 5 до 15
   const [duration, setDuration] = useState(30); // длительность: 15-60
-  const [remaining, setRemaining] = useState(30); // оставшееся время в секундах
+  const [setRemaining] = useState(30); // оставшееся время в секундах
   const [showSettings, setShowSettings] = useState(true); // показывать ли окно настроек
 
   // Обновляем remaining при изменении duration (если не идёт таймер)
