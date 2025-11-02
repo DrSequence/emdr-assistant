@@ -1,0 +1,20 @@
+.stimulus {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #00bcd4;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-15px, -15px, 0);
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  filter: none;
+  box-shadow: none;
+  text-shadow: none;
+}
