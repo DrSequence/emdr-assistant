@@ -16,10 +16,11 @@ export const SettingsPanel: React.FC<{
       left: '50%',
       transform: 'translate(-50%, -50%)',
       backgroundColor: '#1a1a1a',
-      padding: '40px',
+      padding: 'min(40px, 5vw)',
       borderRadius: '15px',
       border: '2px solid #4a90e2',
-      minWidth: '400px',
+      minWidth: 'min(400px, 90vw)',
+      maxWidth: '95vw',
       textAlign: 'center',
       boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5)',
       zIndex: 1000
@@ -48,7 +49,7 @@ export const SettingsPanel: React.FC<{
           {speed}
         </span>
         <button 
-          onClick={() => onSpeedChange(Math.min(15, speed + 1))}
+          onClick={() => onSpeedChange(Math.min(25, speed + 1))}
           style={{
             padding: '8px 15px',
             fontSize: '16px',

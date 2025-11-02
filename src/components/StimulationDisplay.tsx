@@ -7,14 +7,24 @@ export const StimulationDisplay: React.FC<{
   isActive: boolean;
 }> = ({ config, isActive }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const [amplitude, setAmplitude] = useState(() => window.innerWidth * 0.35);
+  const [amplitude, setAmplitude] = useState(() => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    // Используем меньшую из двух размеров для мобильных устройств
+    const baseSize = Math.min(width, height);
+    return baseSize * 0.35;
+  });
   const timeRef = useRef(0);
   const lastFrameTimeRef = useRef<number | null>(null);
   const speedRef = useRef(config.speed);
 
   useEffect(() => {
     const updateAmplitude = () => {
-      setAmplitude(window.innerWidth * 0.35);
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      // Используем меньшую из двух размеров для мобильных устройств
+      const baseSize = Math.min(width, height);
+      setAmplitude(baseSize * 0.35);
     };
 
     window.addEventListener('resize', updateAmplitude);

@@ -4,7 +4,7 @@ import { SettingsPanel } from './SettingsPanel';
 
 export const SessionManager: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [speed, setSpeed] = useState(5); // скорость от 5 до 15
+  const [speed, setSpeed] = useState(5); // скорость от 5 до 25
   const [duration, setDuration] = useState(30); // длительность: 15-60
   const [, setRemaining] = useState(30); // оставшееся время в секундах
   const [showSettings, setShowSettings] = useState(true); // показывать ли окно настроек
@@ -86,7 +86,10 @@ export const SessionManager: React.FC = () => {
           display: 'flex',
           alignItems: 'center',
           gap: '20px',
-          boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5)'
+          boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5)',
+          maxWidth: '95vw',
+          flexWrap: 'wrap',
+          justifyContent: 'center'
         }}>
           <span style={{ fontSize: '18px', color: '#4a90e2' }}>Скорость:</span>
           <button 
@@ -107,7 +110,7 @@ export const SessionManager: React.FC = () => {
             {speed}
           </span>
           <button 
-            onClick={() => setSpeed(Math.min(15, speed + 1))}
+            onClick={() => setSpeed(Math.min(25, speed + 1))}
             style={{
               padding: '8px 15px',
               fontSize: '18px',
