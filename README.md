@@ -1,73 +1,107 @@
-# React + TypeScript + Vite
+### 🧠 EMDR Assistant
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple web-based EMDR (Eye Movement Desensitization and Reprocessing) simulation tool built with React + TypeScript + Vite.
+It provides a configurable visual stimulation pattern for relaxation, therapy training, or demo purposes.
 
-Currently, two official plugins are available:
+### 🧘‍♂️ Purpose
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project is a personal experiment to simulate bilateral visual stimulation used in EMDR therapy.
+It’s not a medical tool and should not be used for clinical treatment.
 
-## React Compiler
+### 🚀 Features
+	•	🎨 Adjustable stimulation speed and color
+	•	⏱️ Built-in session timer
+	•	🖥️ Minimalistic and responsive UI
+	•	⚙️ Built with Vite for lightning-fast development
+	•	🌐 GitHub Pages deployment ready
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🧩 Tech Stack
+	•	React + TypeScript
+	•	Vite
+	•	CSS Modules
+	•	GitHub Actions for CI/CD
 
-## Expanding the ESLint configuration
+### 🛠️ Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Clone the repository and install dependencies:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+git clone https://github.com/<your-username>/emdr-assistant.git
+cd emdr-assistant
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 🧪 Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Run the local dev server:
+```
+npm run dev
+```
+Then open http://localhost:5173￼ in your browser.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+
+### 🏗️ Build
+
+Create a production build:
+```
+npm run build
+```
+Preview it locally:
+```
+npm run preview
+```
+
+### 🌍 Deployment (GitHub Pages)
+
+This project uses GitHub Actions to automatically build and deploy the app to GitHub Pages whenever you push to the main branch.
+
+Workflow example (.github/workflows/deploy.yml):
+```
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: dist
+```
+
+### 📁 Project Structure
+
+```
+src/
+├── components/
+│   ├── ControlPanel.tsx
+│   ├── SettingsPanel.tsx
+│   ├── StimulationDisplay.tsx
+│   └── TimerDisplay.tsx
+├── types/
+│   └── index.ts
+├── App.tsx
+├── main.tsx
+└── index.css
 ```
