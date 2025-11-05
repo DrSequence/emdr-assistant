@@ -1,12 +1,14 @@
 // src/types.ts
 export type StimulationType = 'eye' | 'tactile' | 'audio';
 export type MovementPattern = 'horizontal' | 'vertical' | 'circle';
+export type StimulationMode = 'ball' | 'blink'; // шарик или моргание
 
 export interface StimulationConfig {
   type: StimulationType;
-  speed: number;      // 1-10
+  speed: number;      // 1-25
   duration: number;   // в секундах
   pattern: MovementPattern;
+  mode: StimulationMode; // режим отображения
 }
 
 export interface ProtocolStep {
