@@ -1,4 +1,5 @@
 import React from 'react';
+import type { StimulationMode } from '../types';
 
 export const SettingsPanel: React.FC<{
   onPlayPause: () => void;
@@ -7,8 +8,10 @@ export const SettingsPanel: React.FC<{
   onSpeedChange: (speed: number) => void;
   duration: number;
   onDurationChange: (duration: number) => void;
+  mode: StimulationMode;
+  onModeChange: (mode: StimulationMode) => void;
   isPlaying: boolean;
-}> = ({ onPlayPause, onStop, speed, onSpeedChange, duration, onDurationChange, isPlaying }) => (
+}> = ({ onPlayPause, onStop, speed, onSpeedChange, duration, onDurationChange, mode, onModeChange, isPlaying }) => (
   <div
     style={{
       position: 'absolute',
@@ -29,10 +32,50 @@ export const SettingsPanel: React.FC<{
     <h2 style={{ marginTop: 0, marginBottom: '30px', color: '#4a90e2' }}>Настройки сеанса</h2>
     
     <div style={{ marginBottom: '25px' }}>
+      <div style={{ marginBottom: '20px' }}>
+        <div style={{ marginBottom: '10px', fontSize: '16px' }}>Режим:</div>
+        <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
+          <button
+            onClick={() => onModeChange('ball')}
+            disabled={isPlaying}
+            style={{
+              padding: '10px 20px',
+              fontSize: '16px',
+              backgroundColor: mode === 'ball' ? '#4a90e2' : '#333',
+              color: 'white',
+              border: `2px solid ${mode === 'ball' ? '#4a90e2' : '#555'}`,
+              borderRadius: '8px',
+              cursor: isPlaying ? 'not-allowed' : 'pointer',
+              opacity: isPlaying ? 0.5 : 1,
+              fontWeight: mode === 'ball' ? 'bold' : 'normal'
+            }}
+          >
+            🎯 Шарик
+          </button>
+          <button
+            onClick={() => onModeChange('blink')}
+            disabled={isPlaying}
+            style={{
+              padding: '10px 20px',
+              fontSize: '16px',
+              backgroundColor: mode === 'blink' ? '#4a90e2' : '#333',
+              color: 'white',
+              border: `2px solid ${mode === 'blink' ? '#4a90e2' : '#555'}`,
+              borderRadius: '8px',
+              cursor: isPlaying ? 'not-allowed' : 'pointer',
+              opacity: isPlaying ? 0.5 : 1,
+              fontWeight: mode === 'blink' ? 'bold' : 'normal'
+            }}
+          >
+            ✨ Моргание
+          </button>
+        </div>
+      </div>
+      
       <div style={{ marginBottom: '15px' }}>
         <span style={{ marginRight: '10px', fontSize: '16px' }}>Скорость:</span>
         <button 
-          onClick={() => onSpeedChange(Math.max(5, speed - 1))}
+          onClick={() => onSpeedChange(Math.max(1, speed - 1))}
           style={{
             padding: '8px 15px',
             fontSize: '16px',

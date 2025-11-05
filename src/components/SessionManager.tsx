@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { StimulationDisplay } from './StimulationDisplay';
 import { SettingsPanel } from './SettingsPanel';
+import type { StimulationMode } from '../types';
 
 export const SessionManager: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [speed, setSpeed] = useState(5); // скорость от 5 до 25
+  const [speed, setSpeed] = useState(5); // скорость от 1 до 25
   const [duration, setDuration] = useState(30); // длительность: 15-60
+  const [mode, setMode] = useState<StimulationMode>('ball'); // режим: ball или blink
   const [, setRemaining] = useState(30); // оставшееся время в секундах
   const [showSettings, setShowSettings] = useState(true); // показывать ли окно настроек
 
@@ -55,11 +57,18 @@ export const SessionManager: React.FC = () => {
     type: 'eye' as const,
     speed,
     duration,
-    pattern: 'horizontal' as const
+    pattern: 'horizontal' as const,
+    mode
   };
 
   return (
-    <div style={{ textAlign: 'center', height: '100vh', background: '#2f2f2f', color: 'white', position: 'relative' }}>
+    <div style={{ 
+      textAlign: 'center', 
+      height: '100vh', 
+      background: mode === 'blink' ? '#000000' : '#2f2f2f', 
+      color: 'white', 
+      position: 'relative' 
+    }}>
       <StimulationDisplay config={config} isActive={isPlaying} />
       {showSettings && (
         <SettingsPanel
@@ -69,6 +78,8 @@ export const SessionManager: React.FC = () => {
           onSpeedChange={setSpeed}
           duration={duration}
           onDurationChange={setDuration}
+          mode={mode}
+          onModeChange={setMode}
           isPlaying={isPlaying}
         />
       )}
@@ -93,7 +104,7 @@ export const SessionManager: React.FC = () => {
         }}>
           <span style={{ fontSize: '18px', color: '#4a90e2' }}>Скорость:</span>
           <button 
-            onClick={() => setSpeed(Math.max(5, speed - 1))}
+            onClick={() => setSpeed(Math.max(1, speed - 1))}
             style={{
               padding: '8px 15px',
               fontSize: '18px',
